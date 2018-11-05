@@ -49,7 +49,6 @@ class GaborFilterbank:
         print("   Input - an orientation field")                #stub
         print("   Input - a mask image (region-of-interest)")   #stub
         print("   Output - a filtered image")                   #stub
-        cv2.imshow("doifj", img)
         img = np.where(mskImg==0, img, 255)
         return img 
 

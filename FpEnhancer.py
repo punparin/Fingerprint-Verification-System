@@ -21,6 +21,16 @@ class FpEnhancer:
                     mask[i:i+n, j:j+n] = 255
                 else:
                     mask[i:i+n, j:j+n] = 0
+        toRemove = []
+        for i in range(0, rows, n):
+            for j in range(0, cols, n):
+                if (i-n<0 or j-n<0 or i+n+1>rows or j+n+1>rows):
+                    toRemove.append((i, j))
+                elif (mask[i+1, j+1]==0) and (mask[i+n+1, j+1]==255 or mask[i-n+1, j+1]==255 or mask[i+1, j-n+1]==255 or mask[i+1, j+n+1]==255):
+                    toRemove.append((i, j))
+        for element in toRemove:
+            i, j = element[0], element[1]
+            mask[i:i+n, j:j+n] = 255
         return mask
     
     def enhance(self, fpImg, mskImg):
