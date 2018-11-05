@@ -6,13 +6,13 @@ import math
 class FpSegmentator:
     def __init__(self, bs = 8):
         self.blockSize = bs
-        
-    def segment(self, fpImg):  
+
+    def segment(self, fpImg):
         print("Stub - Fingerprint segmentation")                #stub
         print("   Input - a fingerprint image")                 #stub
         print("   Output - a segmented image")                  #stub
         print("   Output - a mask image (region-of-interest)")  #stub
-        segmentedImg = fpImg                                    #stub       
+        segmentedImg = fpImg                                    #stub
         maskImg = fpImg                                         #stub
         # kernely = np.array([[1,1,1],[0,0,0],[-1,-1,-1]])
         # kernelx = np.array([[1,0,-1],[1,0,-1],[1,0,-1]])
@@ -21,8 +21,8 @@ class FpSegmentator:
         kernely = np.array([[-3,-10,-3],[0,0,0],[3,10,3]])
         kernelx = np.array([[-3,0,3],[-10,0,10],[-3,0,3]])
 
-        edges_x = cv2.filter2D(img,cv2.CV_8U,kernelx)
-        edges_y = cv2.filter2D(img,cv2.CV_8U,kernely) 
+        edges_x = cv2.filter2D(fpImg, cv2.CV_8U,kernelx)
+        edges_y = cv2.filter2D(fpImg, cv2.CV_8U,kernely)
 
         rows, cols, *ch = maskImg.shape
         total = 0
@@ -51,22 +51,22 @@ class FpSegmentator:
                     if  x_sd < 200 or y_sd < 400:
                         for r in range(row,row+16):
                             for c in range(col,col+16):
-                                segmentedImg[r,c] = 255
-                                
+                                segmentedImg[r,c] = 0
+
                     total = 0
                     sd = 0
                 except IndexError as ie:
                     pass
         return segmentedImg
-   
+
 #-----------------------------
 
-if __name__ == "__main__":
-    img = cv2.imread("FP DB (subset)/1_1.bmp", cv2.IMREAD_GRAYSCALE)
-    segmentator = FpSegmentator(8)
-    segmentedImg = segmentator.segment(img)
-    cv2.imshow("segment", segmentedImg)
-    cv2.waitKey()
-    cv2.destroyAllWindows()
+# if __name__ == "__main__":
+#     img = cv2.imread("FP DB (subset)/1_1.bmp", cv2.IMREAD_GRAYSCALE)
+#     segmentator = FpSegmentator(8)
+#     segmentedImg = segmentator.segment(img)
+#     cv2.imshow("segment", segmentedImg)
+#     cv2.waitKey()
+#     cv2.destroyAllWindows()
 
 #-----------------------------
