@@ -32,7 +32,7 @@ class OfDetector:
                 dist = d
                 currentOrientation = o
         return currentOrientation
-    
+
     def ridge_estimation(self, img, n):
         rows, cols = img.shape
         orientations = np.zeros((rows//n+1, cols//n+1), dtype = np.float32)
@@ -45,13 +45,8 @@ class OfDetector:
                 block = img[i:i2, j:j2]
                 orientations[i//n, j//n] = self.quantizeOrientation(self.computeOrientation(block))
         return orientations
-    
+
     def detect(self, fpImg, mskImg):
-        print("Stub - Orientation Field Detection")             #stub
-        print("   Input - a fingerprint image (gray-scale)")    #stub
-        print("   Input - a mask image (region-of-interest)")   #stub
-        print("   Output - an orientation field (matrix)")      #stub
-        print("   Output - an orientation field (image)")       #stub
         n = 16
         img = fpImg
         img = np.where(mskImg==1.0, img, 255)
@@ -64,7 +59,7 @@ class OfDetector:
             for x in range(xblocks):
                 ofImg[y*n:(y+1)*n, x*n:(x+1)*n] = ofMat[y, x]
         return ofMat, ofImg                     #stub
-        
+
 #-----------------------------
 if __name__ == "__main__":
     pass

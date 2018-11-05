@@ -22,17 +22,21 @@ class FpEnhancer:
         return mask
     
     def enhance(self, fpImg, mskImg):
+<<<<<<< HEAD
         print("Stub - Fingerprint Enhancement")                 #stub
         print("   Input - a fingerprint image (gray-scale)")    #stub
         print("   Input - a mask image (region-of-interest)")   #stub
         print("   Output - an enhanced image")                  #stub
         mskImg2 = self.createMask(fpImg)
+=======
+        fpImg = np.where(mskImg==1.0, fpImg, 255)
+>>>>>>> origin/master
         ofDetector = OfDetector()
         ofMat, ofImg = ofDetector.detect(fpImg, mskImg)
         gaborFilterBank = GaborFilterbank()
         enhImg = gaborFilterBank.filter(fpImg, ofImg, mskImg2)
         return enhImg
-        
+
 #-----------------------------
 if __name__ == "__main__":
     img = cv2.imread("1_1.bmp", cv2.IMREAD_GRAYSCALE)

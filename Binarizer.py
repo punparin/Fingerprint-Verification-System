@@ -9,7 +9,7 @@ class Binarizer:
 
 #-----------------------------
 if __name__ == "__main__":
-    img = cv2.imread("FP DB (subset)/fingerprint.bmp", cv2.IMREAD_GRAYSCALE)
+    img = cv2.imread("FP DB (subset)/1_1.bmp", cv2.IMREAD_GRAYSCALE)
     binImg = Binarizer().binarize(img)
     cv2.imshow("binary", binImg)
     cv2.imwrite('test.bmp',binImg)
