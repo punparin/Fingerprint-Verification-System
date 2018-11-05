@@ -7,17 +7,13 @@ from GaborFilterbank import GaborFilterbank
 #-----------------------------
 class FpEnhancer:
     def enhance(self, fpImg, mskImg):
-        print("Stub - Fingerprint Enhancement")                 #stub
-        print("   Input - a fingerprint image (gray-scale)")    #stub
-        print("   Input - a mask image (region-of-interest)")   #stub
-        print("   Output - an enhanced image")                  #stub
         fpImg = np.where(mskImg==1.0, fpImg, 255)
         ofDetector = OfDetector()
         ofMat, ofImg = ofDetector.detect(fpImg, mskImg)
         gaborFilterBank = GaborFilterbank()
         enhImg = gaborFilterBank.filter(fpImg, ofImg, mskImg)
         return enhImg
-        
+
 #-----------------------------
 if __name__ == "__main__":
     img = cv2.imread("1_1.bmp", cv2.IMREAD_GRAYSCALE)

@@ -12,7 +12,7 @@ class MnMatcher:
         print("   Output - similarity score")               #stub
         similarity = 0.75                                   #stub
         return similarity                                   #stub
-    
+
 #-----------------------------
 if __name__ == "__main__":
     img = cv2.imread("1_1.bmp", cv2.IMREAD_GRAYSCALE)
