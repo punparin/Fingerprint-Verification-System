@@ -43,20 +43,16 @@ class GaborFilterbank:
                 orientation = orientations[i//n, j//n]
                 gabor = self.kernels[orientation]
                 img[i:i+n, j:j+n] = gabor.filter(block)[i-i1:i-i1+n, j-j1:j-j1+n]
-<<<<<<< HEAD
+
         print("Stub - Gabor filtering")                         #stub
         print("   Input - a fingerprint image (gray-scale)")    #stub
         print("   Input - an orientation field")                #stub
         print("   Input - a mask image (region-of-interest)")   #stub
         print("   Output - a filtered image")                   #stub
-        img = np.where(mskImg==1.0, img, 255)
-        return img                                              #stub
-        
-=======
-        img = np.where(mskImg==1.0, img, 255)
-        return img
+        cv2.imshow("doifj", img)
+        img = np.where(mskImg==0, img, 255)
+        return img 
 
->>>>>>> origin/master
 #-----------------------------
 if __name__ == "__main__":
     pass

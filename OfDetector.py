@@ -49,7 +49,6 @@ class OfDetector:
     def detect(self, fpImg, mskImg):
         n = 16
         img = fpImg
-        img = np.where(mskImg==1.0, img, 255)
         rows, cols = img.shape
         yblocks, xblocks = rows//n, cols//n
         orientations = self.ridge_estimation(img, n)
