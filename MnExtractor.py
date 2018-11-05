@@ -52,7 +52,9 @@ class MnExtractor:
     def extract(self, enhancedImg):
         rows, cols = enhancedImg.shape
         binImg = self.binarizer.binarize(enhancedImg)
+        # cv2.imshow("Binary image", binImg)
         skeletonImg = self.skeletonizer.skeletonize(binImg)
+        # cv2.imshow("Skeleton image", skeletonImg)
         mnSet = []
         count = 0
         for i in range(1, rows - 1):
@@ -63,40 +65,49 @@ class MnExtractor:
                         mnSet.append([i, j, M_TYPE_ENDPOINT])
                     elif cn == 3 and not self.isBoundary(enhancedImg, i, j):
                         mnSet.append([i, j, M_TYPE_BIFURCATION])
+
+        # minutiaImg = cv2.cvtColor(skeletonImg, cv2.COLOR_GRAY2BGR)
+        # for i in range(len(mnSet)):
+        #     mn = mnSet[i]
+        #     if mn[2] == M_TYPE_ENDPOINT:
+        #         minutiaImg[mn[0] - 1: mn[0] + 2, mn[1] - 1: mn[1] + 2] = [0, 0, 255]
+        #     elif mn[2] == M_TYPE_BIFURCATION:
+        #         minutiaImg[mn[0] - 1: mn[0] + 2, mn[1] - 1: mn[1] + 2] = [255, 0, 0]
+        # cv2.imshow("Minutia", minutiaImg)
+
         return mnSet
 
 #-----------------------------
-if __name__ == "__main__":
-    from gabor import GaborEnhance
-    from FpSegmentator import FpSegmentator
-    from FpEnhancer import FpEnhancer
+# if __name__ == "__main__":
+#     from FpSegmentator import FpSegmentator
+#     from FpEnhancer import FpEnhancer
 
-    # img = cv2.imread("FP DB (subset)/1_1.bmp", cv2.IMREAD_GRAYSCALE)
-    # cv2.imshow("Original image", img)
+#     img = cv2.imread("FP DB (subset)/1_4.bmp", cv2.IMREAD_GRAYSCALE)
+#     cv2.imshow("Original image", img)
 
-    # segmentator = FpSegmentator(8)
-    # segmentedImg = segmentator.segment(img)
-    # cv2.imshow("Segmented image", segmentedImg)
+#     segmentator = FpSegmentator(8)
+#     segmentedImg = segmentator.segment(img)
+#     cv2.imshow("Segmented image", segmentedImg)
 
-    # enhance = GaborEnhance()
-    # enhancedImg = enhance.enhanceImage(segmentedImg, 16)
-    # cv2.imshow("Enhanced image", enhancedImg)
+#     enhancer = FpEnhancer()
+#     enhancedImg = enhancer.enhance(segmentedImg, np.ones(img.shape))
+#     cv2.imshow("Enhanced image", enhancedImg)
 
-    # mnSet = MnExtractor().extract(enhancedImg)
-    # print(len(mnSet))
-    # cv2.waitKey()
-    # cv2.destroyAllWindows()
+#     mnSet = MnExtractor().extract(enhancedImg)
+#     print(len(mnSet))
+#     cv2.waitKey()
+#     cv2.destroyAllWindows()
 
-    for i in range(1, 5):
-        for j in range(1, 5):
-            img = cv2.imread("FP DB (subset)/" + str(i) + "_" + str(j) + ".bmp", cv2.IMREAD_GRAYSCALE)
-            segmentator = FpSegmentator(8)
-            segmentedImg = segmentator.segment(img)
+    # for i in range(1, 5):
+    #     for j in range(1, 5):
+    #         img = cv2.imread("FP DB (subset)/" + str(i) + "_" + str(j) + ".bmp", cv2.IMREAD_GRAYSCALE)
+    #         segmentator = FpSegmentator(8)
+    #         segmentedImg = segmentator.segment(img)
 
-            enhancer = FpEnhancer()
-            enhancedImg = enhancer.enhance(segmentedImg, np.ones(img.shape))
+    #         enhancer = FpEnhancer()
+    #         enhancedImg = enhancer.enhance(segmentedImg, np.ones(img.shape))
 
-            mnSet = MnExtractor().extract(enhancedImg)
-            print(len(mnSet))
+    #         mnSet = MnExtractor().extract(enhancedImg)
+    #         print(len(mnSet))
 
 #-----------------------------

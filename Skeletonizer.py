@@ -56,15 +56,15 @@ class Skeletonizer:
         return binImg
 
 #-----------------------------
-if __name__ == "__main__":
-    img = cv2.imread("FP DB (subset)/fingerprint.bmp", cv2.IMREAD_GRAYSCALE)
-    from Binarizer import Binarizer
-    binImg = Binarizer().binarize(img)
-    skeletonImg = Skeletonizer().skeletonize(binImg)
-    cv2.imshow("skeleton", skeletonImg)
-    # cv2.imwrite("skeleton.bmp", skeletonImg)
-    cv2.waitKey()
-    cv2.destroyAllWindows()
+# if __name__ == "__main__":
+#     img = cv2.imread("FP DB (subset)/fingerprint.bmp", cv2.IMREAD_GRAYSCALE)
+#     from Binarizer import Binarizer
+#     binImg = Binarizer().binarize(img)
+#     skeletonImg = Skeletonizer().skeletonize(binImg)
+#     cv2.imshow("skeleton", skeletonImg)
+#     # cv2.imwrite("skeleton.bmp", skeletonImg)
+#     cv2.waitKey()
+#     cv2.destroyAllWindows()
 
 #-----------------------------
 
