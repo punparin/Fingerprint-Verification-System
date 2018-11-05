@@ -49,7 +49,7 @@ class GaborFilterbank:
         print("   Input - an orientation field")                #stub
         print("   Input - a mask image (region-of-interest)")   #stub
         print("   Output - a filtered image")                   #stub
-        img = np.where(mskImg==0, img, 255)
+        img = np.where(mskImg==1.0, img, 255)
         return img                                              #stub
         
 =======
