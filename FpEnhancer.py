@@ -1,8 +1,8 @@
 import cv2
 import numpy as np
 import FpSegmentator
-import OfDetector
-import GaborFilterbank
+from OfDetector import OfDetector
+from GaborFilterbank import GaborFilterbank
 
 #-----------------------------
 class FpEnhancer:
@@ -11,7 +11,11 @@ class FpEnhancer:
         print("   Input - a fingerprint image (gray-scale)")    #stub
         print("   Input - a mask image (region-of-interest)")   #stub
         print("   Output - an enhanced image")                  #stub
-        enhImg = fpImg                                          #stub
+        fpImg = np.where(mskImg==1.0, fpImg, 255)
+        ofDetector = OfDetector()
+        ofMat, ofImg = ofDetector.detect(fpImg, mskImg)
+        gaborFilterBank = GaborFilterbank()
+        enhImg = gaborFilterBank.filter(fpImg, ofImg, mskImg)
         return enhImg
         
 #-----------------------------
