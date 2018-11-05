@@ -44,11 +44,11 @@ class FpSegmentator:
                             sd += (edges_y[r,c] - (total//size))**2
                     y_sd = math.sqrt(sd//self.blockSize)
 
-                    if  x_sd < 200 or y_sd < 400:
+                    if  x_sd < 200 or y_sd < 380: #420, 700
                         for r in range(row,row+16):
                             for c in range(col,col+16):
                                 segmentedImg[r,c] = 255
-
+           
                     total = 0
                     sd = 0
                 except IndexError as ie:
@@ -58,7 +58,7 @@ class FpSegmentator:
 #-----------------------------
 
 # if __name__ == "__main__":
-#     img = cv2.imread("FP DB (subset)/1_1.bmp", cv2.IMREAD_GRAYSCALE)
+#     img = cv2.imread("FP DB (subset)/6_1.bmp", cv2.IMREAD_GRAYSCALE)
 #     segmentator = FpSegmentator(8)
 #     segmentedImg = segmentator.segment(img)
 #     cv2.imshow("segment", segmentedImg)
